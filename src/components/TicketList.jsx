@@ -9,7 +9,7 @@ export default function TicketList() {
     const [sortOrder, setSortOrder] = useState("newest");
 
      useEffect(() => {
-    fetch("https://tickets-backend-production-ecbc.up.railway.app/tickets")
+    fetch("https://tickets-backend-production-e500.up.railway.app/tickets")
         .then(res => res.json())
         .then(data => dispatch({ type: "SET_TICKETS", tickets: data }))
         .catch(err => console.log(err));

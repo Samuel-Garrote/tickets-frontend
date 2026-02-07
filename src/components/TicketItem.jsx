@@ -6,7 +6,7 @@ export default function TicketItem({ ticket }) {
     const dispatch = useContext(AppContext);
 
     const handleDelete = () => {
-    fetch(`https://tickets-backend-production-ecbc.up.railway.app/tickets/${ticket.id}`, { method: 'DELETE' })
+    fetch(`https://tickets-backend-production-e500.up.railway.app/tickets/${ticket.id}`, { method: 'DELETE' })
         .then(() => dispatch({ type: 'DELETE_TICKET', id: ticket.id }))
         .catch(err => console.log(err));
     };

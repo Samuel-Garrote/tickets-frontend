@@ -8,7 +8,10 @@ export default function TicketForm({ editTicket, onFinishEdit }) {
   const [description, setDescription] = useState('');
   const [priority, setPriority] = useState('low');
   const [tags, setTags] = useState('');
-  const [message, setMessage] = useState(''); // Feedback
+  const [message, setMessage] = useState('');
+
+  // URL de tu backend Railway
+  const BACKEND_URL = 'https://tickets-backend-production-e500.up.railway.app';
 
   useEffect(() => {
     if (editTicket) {
@@ -22,41 +25,47 @@ export default function TicketForm({ editTicket, onFinishEdit }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (editTicket) {
-      const updatedTicket = {
-        ...editTicket,
-        title,
-        description,
-        priority,
-        tags: tags.split(',').map(t => t.trim()).filter(t => t)
-      };
-      dispatch({ type: 'UPDATE_TICKET', ticket: updatedTicket });
-      if (onFinishEdit) onFinishEdit();
-      setMessage('Ticket updated!');
-    } else {
-      const newTicket = {
-        title,
-        description,
-        priority,
-        tags: tags.split(',').map(t => t.trim()).filter(t => t),
-      };
+    const ticketData = {
+      title,
+      description,
+      priority,
+      tags: tags.split(',').map(t => t.trim()).filter(t => t)
+    };
 
-      fetch("https://tickets-backend-production-ecbc.up.railway.app/tickets", {
+    if (editTicket) {
+      // EDIT ticket - fetch PUT
+      fetch(`${BACKEND_URL}/tickets/${editTicket.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(ticketData)
+      })
+      .then(res => res.json())
+      .then(updatedTicket => {
+        dispatch({ type: 'UPDATE_TICKET', ticket: updatedTicket });
+        if (onFinishEdit) onFinishEdit();
+        setMessage('Ticket updated!');
+        setTimeout(() => setMessage(''), 2000);
+      })
+      .catch(err => console.error(err));
+
+    } else {
+      // NEW ticket - fetch POST
+      fetch(`${BACKEND_URL}/tickets`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newTicket)
+        body: JSON.stringify(ticketData)
       })
-        .then(res => res.json())
-        .then(ticket => {
-          dispatch({ type: 'ADD_TICKET', ticket });
-          setTitle('');
-          setDescription('');
-          setPriority('low');
-          setTags('');
-          setMessage('Ticket added!');
-          setTimeout(() => setMessage(''), 2000); // Feedback desaparece
-        })
-        .catch(err => console.error(err));
+      .then(res => res.json())
+      .then(ticket => {
+        dispatch({ type: 'ADD_TICKET', ticket });
+        setTitle('');
+        setDescription('');
+        setPriority('low');
+        setTags('');
+        setMessage('Ticket added!');
+        setTimeout(() => setMessage(''), 2000);
+      })
+      .catch(err => console.error(err));
     }
   };
 
