@@ -3,7 +3,7 @@ import { AppContext } from '../context/AppContext';
 import { Link } from 'react-router-dom';
 
 export default function TicketItem({ ticket }) {
-    const dispatch = useContext(AppContext);
+    const {dispatch} = useContext(AppContext);
 
     const handleDelete = () => {
     fetch(`https://tickets-backend-production-e500.up.railway.app/tickets/${ticket.id}`, { method: 'DELETE' })
