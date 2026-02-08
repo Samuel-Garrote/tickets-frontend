@@ -4,12 +4,12 @@ import TicketList from '../components/TicketList';
 import TicketForm from '../components/TicketForm';
 
 export default function Home() {
-  return (
+    return (
     <div>
-      <h1>Home Page</h1>
-      <p>Welcome to the Tickets App!</p>
-      <TicketList/>
-      <TicketForm/>
+        <h1>Home Page</h1>
+        <p>Welcome to the Tickets App!</p>
+        <TicketList/>
+        <TicketForm/>
     </div>
-  );
+    );
 }
