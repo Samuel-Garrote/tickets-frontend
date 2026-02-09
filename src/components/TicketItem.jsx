@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 import { Link } from 'react-router-dom';
 
-export default function TicketItem({ ticket }) {
+export default function TicketItem({ ticket,onEdit }) {
   const { dispatch } = useContext(AppContext);
 
   const handleDelete = () => {
@@ -45,9 +45,9 @@ export default function TicketItem({ ticket }) {
 
       {/* Botones */}
       <div className="ticket-buttons">
-        <Link to={`/tickets/edit/${ticket.id}`}>
-          <button className="btn btn-edit">Edit</button>
-        </Link>
+        
+        <button className="btn btn-edit" onClick={() => onEdit(ticket)}>Edit</button>
+
         <button onClick={handleDelete} className="btn btn-delete">
           Delete
         </button>
