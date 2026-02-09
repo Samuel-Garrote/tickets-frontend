@@ -26,14 +26,17 @@ function reducer(state, action) {
       )
     };
   }
-    if (action.type === 'DELETED_TICKET') {
+
+  if (action.type === 'DELETE_TICKET') {
     return {
-            ...state, ticket: tickets.filter(ticket=> ticket.id !== action.id)
+      ...state,
+      tickets: state.tickets.filter(ticket => ticket.id !== action.id)
     };
-    }
+  }
 
   return state;
 }
+
 
 // Provider
 export function AppProvider({ children }) {
