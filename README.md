@@ -91,11 +91,6 @@ Run the development server:
 
 npm run dev
 
-The application will run at:
-
-http://localhost:5173
-Backend
-
 This frontend communicates with a backend server built with:
 
 Node.js
@@ -107,6 +102,6 @@ REST API
 Backend repository:
 https://github.com/Samuel-Garrote/tickets-backend
 
-Live demo:
+Live frontend demo:
 
 https://frontend-tickets.netlify.app/
