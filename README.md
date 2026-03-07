@@ -1,16 +1,112 @@
-# React + Vite
+Ticket System – Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend application for a simple ticket management system built with React.
+The application allows users to create, view, edit and delete tickets through a REST API.
 
-Currently, two official plugins are available:
+This project focuses on building a full CRUD interface and managing application state in a React application.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Tech Stack
 
-## React Compiler
+React
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+React Router
 
-## Expanding the ESLint configuration
+Context API
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+JavaScript (ES6+)
+
+CSS
+
+REST API integration
+
+Features
+
+View list of tickets
+
+Create new tickets
+
+Edit existing tickets
+
+Delete tickets
+
+View ticket details
+
+Global state management using Context API
+
+Client-side routing with React Router
+
+Project Structure
+src/
+ ├── components/
+ │   ├── Navbar
+ │   ├── TicketList
+ │   ├── TicketItem
+ │   └── TicketForm
+ │
+ ├── pages/
+ │   ├── Tickets
+ │   └── TicketDetail
+ │
+ ├── context/
+ │   └── AppContext
+ │
+ ├── App.jsx
+ ├── main.jsx
+ └── index.css
+State Management
+
+The application uses React Context to manage global state for tickets.
+
+This allows different components to access and update ticket data without passing props through multiple levels of the component tree.
+
+Typical actions include:
+
+adding new tickets
+
+updating existing tickets
+
+removing tickets
+
+Ticket Operations
+
+The frontend interacts with a backend REST API to perform ticket operations:
+
+GET /tickets → retrieve all tickets
+
+POST /tickets → create a new ticket
+
+PUT /tickets/:id → update a ticket
+
+DELETE /tickets/:id → remove a ticket
+
+These endpoints allow the frontend to implement full CRUD functionality.
+
+Running the Project
+
+Install dependencies:
+
+npm install
+
+Run the development server:
+
+npm run dev
+
+The application will run at:
+
+http://localhost:5173
+Backend
+
+This frontend communicates with a backend server built with:
+
+Node.js
+
+Express
+
+REST API
+
+Backend repository:
+https://github.com/Samuel-Garrote/tickets-backend
+
+Live demo:
+
+https://frontend-tickets.netlify.app/
